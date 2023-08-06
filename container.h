@@ -27,7 +27,7 @@
 #define DEBUGPRINT(_msg, ...) // do nothing
 #endif
 
-#define GENERROR(code, _msg, ...) fprintf(stderr, "ERROR: Code %d,\nMore details :\n\t" _msg "\n", code, ##__VA_ARGS__);
+#define GENERROR(code, _msg, ...) fprintf(stderr, "ERROR: Code %d,\nMessage from : .\\%s:%d\nMore details :\n\t" _msg "\n", code, __FILE__, __LINE__, ##__VA_ARGS__);
 
 #define NULLContainer (Container){.id = 0};
 
@@ -35,6 +35,7 @@ typedef enum ExitCode {
     SUCCESS = EXIT_SUCCESS,
     ERROR,
     MALLOC_FAILED,
+    FILE_ERROR,
     EMPTY_STACK,
 } ExitCode;
 
@@ -45,5 +46,6 @@ typedef struct Container {
     // other stuff we don't care rn
 } Container;
 
+void print_Container(Container c);
 
 #endif

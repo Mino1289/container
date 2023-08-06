@@ -1,4 +1,5 @@
 typedef enum Ports {
+    Unknown_Port,
     Port_of_Durres,
     Port_of_Algiers,
     Port_of_Djen_Djen,

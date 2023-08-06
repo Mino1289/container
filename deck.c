@@ -21,6 +21,15 @@ Stack* deck_get_At(Deck deck, Position pos) {
     return deck.stack[pos.row][pos.col];
 }
 
-void deck_set_At(Deck deck, Position pos, Stack* stack) {
+DeckStackStatus deck_set_At(Deck deck, Position pos, Stack* stack) {
+    Stack* tmp = deck_get_At(deck, pos);
     deck.stack[pos.row][pos.col] = stack;
+
+    if (deck.stack[pos.row][pos.col] == tmp) {
+        return STACK_SAME_SET;
+    }
+    if (!deck.stack[pos.row][pos.col]) {
+        return STACK_EMPTY;
+    }
+    return STACK_ALREADY_SET;
 }

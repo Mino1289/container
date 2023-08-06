@@ -56,5 +56,5 @@ $(OBJECTS): $(BUILDDIR)/%.o : $(SOURCEDIR)/%.c
 	$(CXX) $(CFLAGS) $(INCLUDEDIR) -c -o $@ $<
 
 clean: 
-	$(CLEANCMD)
+	rm -rf build/ $(EXECUTABLE) $(LIBTARGET)
 	@echo CLEAN

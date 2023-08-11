@@ -7,7 +7,7 @@ int main() {
     // Container c = (Container) {.id = 321, .From = Port_of_Koper, .Dest = Port_of_Barcelona};
     // Container c1 = (Container) {.id = 322, .From = Port_of_Valencia, .Dest = Port_of_Barcelona};
     // printf("Container ID: %d\n", c.id);
-    // Stack stack = stack_Init();
+    // Stack stack = stack_Init(3);
     // printf("%s\n", stack_Empty(stack) ? "vide" : "pavide");
 
     // stack_Push(&stack, c);
@@ -25,11 +25,13 @@ int main() {
     FILE* f = fopen(filename, "r");
 
 
+    Deck deck;
     int n_dest, n_ctn;
     int* dest = NULL;
     Container* ctn = NULL;
-
-    read_f(f, &n_dest, &n_ctn, &dest, &ctn);
+    read_f(f, &deck, &n_dest, &n_ctn, &dest, &ctn);
+    print_Deck(deck);
+    
     for (int i = 0; i < n_dest; i++) {
         printf("%d ", dest[i]);
     }
@@ -41,6 +43,7 @@ int main() {
     fclose(f);
     free(dest);
     free(ctn);
+    free_Deck(&deck);
 
     return 0;
 }

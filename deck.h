@@ -9,7 +9,7 @@ typedef struct Deck {
 } Deck;
 
 typedef struct Position {
-    int row, col;
+    uint8_t row, col;
 } Position;
 
 typedef enum DeckStackStatus {
@@ -18,7 +18,7 @@ typedef enum DeckStackStatus {
     STACK_ALREADY_SET
 } DeckStackStatus;
 
-Deck deck_create(Position size);
+Deck deck_create(Position size, int max);
 
 Stack* deck_get_At(Deck deck, Position pos);
 

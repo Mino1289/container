@@ -6,10 +6,10 @@
 
 typedef struct Stack {
     Container* ctn;
-    int top;
+    int top, max;
 } Stack;
 
-Stack stack_Init();
+Stack* stack_Init(int max);
 
 bool stack_Empty(Stack stack);
 

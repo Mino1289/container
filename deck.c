@@ -1,6 +1,6 @@
 #include <deck.h>
 
-Deck deck_create(Position size) {
+Deck deck_create(Position size, int max) {
     Deck deck = {.length = size.row, .width = size.col};
     deck.stack = (Stack***) malloc(sizeof(Stack**)*deck.length);
     if (!deck.stack) {
@@ -12,6 +12,9 @@ Deck deck_create(Position size) {
         if (!deck.stack[i]) {
             GENERROR(MALLOC_FAILED, "Could not allocate memory for the deck[%d]", i);
             exit(MALLOC_FAILED);
+        }
+        for (int j = 0; j < size.col; ++j) {
+            deck.stack[i][j] = stack_Init(max);
         }
     }
     return deck;

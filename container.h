@@ -37,6 +37,7 @@ typedef enum ExitCode {
     MALLOC_FAILED,
     FILE_ERROR,
     EMPTY_STACK,
+    FULL_STACK,
 } ExitCode;
 
 typedef struct Container {

@@ -36,3 +36,29 @@ DeckStackStatus deck_set_At(Deck deck, Position pos, Stack* stack) {
     }
     return STACK_ALREADY_SET;
 }
+
+void print_Deck(Deck deck) {
+    printf("Deck size: %hhu x %hhu\n", deck.length, deck.width);
+    printf("Deck stack:\n");
+    for (int i = 0; i < deck.length; ++i) {
+        for (int j = 0; j < deck.width; ++j) {
+            if (deck.stack[i][j]) {
+                printf("%p ", (void*) deck.stack[i][j]);
+            } else {
+                printf("0x0 ");
+            }
+        }
+        printf("\n");
+    }
+}
+
+void free_Deck(Deck *deck) {
+    for (int i = 0; i < deck->length; ++i) {
+        for (int j = 0; j < deck->width; ++j) {
+            if (deck->stack[i][j]) {
+                free_Stack(deck->stack[i][j]);
+            }
+        }
+        free(deck->stack[i]);
+    }
+}

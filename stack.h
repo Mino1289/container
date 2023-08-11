@@ -17,8 +17,9 @@ int stack_Size(Stack stack);
 
 void stack_Push(Stack* stack, Container container);
 
-Container stack_Pop(Stack* stack);
+Container stack_Pop(Stack *stack);
 
+void free_Stack(Stack *stack);
 
 
 #endif

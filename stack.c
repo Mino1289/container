@@ -48,3 +48,9 @@ Container stack_Pop(Stack* stack) {
     }
     return element;
 }
+
+void free_Stack(Stack *stack) {
+    if (stack->ctn) {
+        free(stack->ctn);
+    }
+}

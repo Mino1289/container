@@ -24,4 +24,8 @@ Stack* deck_get_At(Deck deck, Position pos);
 
 DeckStackStatus deck_set_At(Deck deck, Position pos, Stack* stack);
 
+void print_Deck(Deck deck);
+
+void free_Deck(Deck *deck);
+
 #endif

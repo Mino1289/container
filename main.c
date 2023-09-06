@@ -1,25 +1,46 @@
+#include <getopt.h>
+#include <string.h>
+
 #include <container.h>
 #include <deck.h>
 #include <literater.h>
 
-int main() {
-    // srand(time(NULL));
-    // Container c = (Container) {.id = 321, .From = Port_of_Koper, .Dest = Port_of_Barcelona};
-    // Container c1 = (Container) {.id = 322, .From = Port_of_Valencia, .Dest = Port_of_Barcelona};
-    // printf("Container ID: %d\n", c.id);
-    // Stack stack = stack_Init(3);
-    // printf("%s\n", stack_Empty(stack) ? "vide" : "pavide");
+typedef struct config {
+    bool verbose;
+    char input[STR_MAX_LEN];
+    char output[STR_MAX_LEN];
+} config;
 
-    // stack_Push(&stack, c);
-    // stack_Push(&stack, c1);
-    // printf("%s\n", stack_Empty(stack) ? "vide" : "pavide");
+int main(int argc, char* argv[]) {
+    config cfg = {
+        .verbose = false,
+        .input = "",
+        .output = "",
+    };
 
-    // Container c2 = stack_Pop(&stack);
-    // printf("Container ID: %d\n", c2.id);
-    // printf("%s\n", stack_Empty(stack) ? "vide" : "pavide");
+    struct option my_opts[] = {
+        {.name = "verbose", .has_arg = 0, .flag = 0, .val = 'v'},
+        {.name = "input", .has_arg = 1, .flag = 0, .val = 'i'},
+        {.name = "output", .has_arg = 1, .flag = 0, .val = 'o'},
+    };
 
-    // stack_Pop(&stack);
-    // printf("%s\n", stack_Empty(stack) ? "vide" : "pavide");
+    int opt;
+    while ((opt = getopt_long(argc, argv, "vi:o:", my_opts, NULL)) != EOF) {
+        switch (opt) {
+            case 'v':
+                cfg.verbose = true;
+                break;
+            
+            case 'i':
+                strncpy(cfg.input, optarg, STR_MAX_LEN);
+                break;
+
+            case 'o':
+                strncpy(cfg.output, optarg, STR_MAX_LEN);
+                break;
+        }
+    }
+    printf("Config:\n\tVerbose: %s\n\tInput: %s\n\tOutput: %s\n", cfg.verbose ? "yes": "no", cfg.input, cfg.output);
 
     const char filename[] = "test.txt";
     FILE* f = fopen(filename, "r");

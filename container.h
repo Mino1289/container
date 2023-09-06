@@ -30,6 +30,7 @@
 #define GENERROR(code, _msg, ...) fprintf(stderr, "ERROR: Code %d,\nMessage from : .\\%s:%d\nMore details :\n\t" _msg "\n", code, __FILE__, __LINE__, ##__VA_ARGS__);
 
 #define NULLContainer (Container){.id = 0};
+#define STR_MAX_LEN 256
 
 typedef enum ExitCode {
     SUCCESS = EXIT_SUCCESS,
